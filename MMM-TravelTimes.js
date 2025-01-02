@@ -35,26 +35,39 @@ Module.register("MMM-TravelTimes", {
         return wrapper;
     },
 
-    createTravelBox: function(iconClass, duration, label, status) {
-        const box = document.createElement("div");
-        box.className = `travel-box ${status}`;
+   createTravelBox: function(iconClass, duration, label, status) {
+    const box = document.createElement("div");
+    box.className = `travel-box ${status}`;
+    box.style.display = "flex"; // Arrange elements in a row
+    box.style.alignItems = "center"; // Center elements vertically
+    box.style.marginBottom = "5px"; // Add spacing between rows
 
-        const icon = document.createElement("i");
-        icon.className = `fa ${iconClass}`;
-        box.appendChild(icon);
+    const icon = document.createElement("i");
+    icon.className = `fa ${iconClass}`;
+    icon.style.marginRight = "10px"; // Space between icon and text
+    box.appendChild(icon);
 
-        const timeDiv = document.createElement("div");
-        timeDiv.className = "commute-time";
-        timeDiv.textContent = duration;
-        box.appendChild(timeDiv);
+    const textDiv = document.createElement("div");
+    textDiv.style.display = "flex";
+    textDiv.style.flexDirection = "row"; // Align text side-by-side
+    textDiv.style.justifyContent = "space-between"; // Space out text
 
-        const labelDiv = document.createElement("div");
-        labelDiv.className = "commute-label";
-        labelDiv.textContent = label;
-        box.appendChild(labelDiv);
+    const timeSpan = document.createElement("span");
+    timeSpan.className = "commute-time";
+    timeSpan.textContent = duration;
+    timeSpan.style.marginRight = "10px"; // Space between time and label
+    textDiv.appendChild(timeSpan);
 
-        return box;
-    },
+    const labelSpan = document.createElement("span");
+    labelSpan.className = "commute-label";
+    labelSpan.textContent = label;
+    textDiv.appendChild(labelSpan);
+
+    box.appendChild(textDiv);
+
+    return box;
+}
+
 
     socketNotificationReceived: function(notification, payload) {
         if (notification === "TRAVEL_TIMES_RESULT") {
