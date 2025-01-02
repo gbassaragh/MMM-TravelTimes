@@ -1,0 +1,15 @@
+{
+  "name": "mmm-traveltimes",
+  "version": "1.0.0",
+  "description": "Magic Mirror module to display travel times.",
+  "main": "MMM-TravelTimes.js",
+  "scripts": {
+              },
+  "keywords": [],
+  "author": "Ghari Bassaragh",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}
+
